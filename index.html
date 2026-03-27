@@ -119,6 +119,43 @@ textarea{resize:vertical;min-height:60px}
 .stat-card{background:var(--dark3);padding:16px;text-align:center}
 .stat-num{font-size:28px;font-weight:800;color:var(--accent)}
 .stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+
+/* GUIDE */
+.guide-section{margin-bottom:28px}
+.guide-title{font-size:16px;font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.guide-body{font-size:14px;color:var(--muted);line-height:1.7}
+.guide-body p{margin-bottom:12px}
+.guide-compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+@media(max-width:600px){.guide-compare{grid-template-columns:1fr}}
+.guide-card{background:var(--dark3);border-radius:10px;padding:16px;border:1px solid rgba(255,255,255,0.04)}
+.guide-card code{display:block;font-size:11px;word-break:break-all;margin:8px 0;padding:10px;background:var(--dark4);border-radius:6px;line-height:1.6}
+.guide-card p{font-size:12px;color:var(--muted);margin:0}
+.guide-card-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.guide-before{border-left:3px solid var(--red)}
+.guide-before .guide-card-label{color:var(--red)}
+.guide-after{border-left:3px solid var(--green)}
+.guide-after .guide-card-label{color:var(--green)}
+
+.guide-steps{display:flex;flex-direction:column;gap:2px}
+.guide-step{display:flex;gap:14px;padding:14px;background:var(--dark3);border-radius:8px}
+.guide-step:first-child{border-radius:8px 8px 4px 4px}
+.guide-step:last-child{border-radius:4px 4px 8px 8px}
+.guide-step:only-child{border-radius:8px}
+.step-num{width:28px;height:28px;border-radius:6px;background:var(--dark5);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--accent);flex-shrink:0}
+.step-content{flex:1}
+.step-content strong{font-size:14px;color:var(--text);display:block;margin-bottom:2px}
+.step-content p{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+
+.guide-rules{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:500px){.guide-rules{grid-template-columns:1fr}}
+.rule{background:var(--dark3);border-radius:8px;padding:14px 16px}
+.rule-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.rule-do{border-left:3px solid var(--green)}
+.rule-do .rule-label{color:var(--green)}
+.rule-dont{border-left:3px solid var(--red)}
+.rule-dont .rule-label{color:var(--red)}
+.rule ul{list-style:none;padding:0}
+.rule li{font-size:13px;color:var(--muted);padding:4px 0;line-height:1.5}
 </style>
 </head>
 <body>
@@ -136,6 +173,7 @@ textarea{resize:vertical;min-height:60px}
   <button class="tab active" onclick="switchTab('single')">Single Link</button>
   <button class="tab" onclick="switchTab('youtube')">YouTube Batch</button>
   <button class="tab" onclick="switchTab('history')">Link History</button>
+  <button class="tab" onclick="switchTab('guide')">How to Use</button>
 </div>
 
 <!-- ==================== SINGLE LINK TAB ==================== -->
@@ -287,6 +325,204 @@ textarea{resize:vertical;min-height:60px}
     </div>
   </div>
   <div class="history-list" id="history-list"></div>
+
+</div>
+
+<!-- ==================== HOW TO USE GUIDE TAB ==================== -->
+<div class="tab-content" id="tab-guide">
+
+  <div class="guide-section">
+    <div class="guide-title">What is a UTM link?</div>
+    <div class="guide-body">
+      <p>A UTM link is a normal URL with tracking tags added to the end. These tags tell Google Analytics exactly where a visitor came from — which video, which email, which social post.</p>
+      <div class="guide-compare">
+        <div class="guide-card guide-before">
+          <div class="guide-card-label">Without UTM</div>
+          <code>https://firstmovers.ai/labs/</code>
+          <p>GA4 shows "youtube.com - referral" but you can't tell which video sent the traffic.</p>
+        </div>
+        <div class="guide-card guide-after">
+          <div class="guide-card-label">With UTM</div>
+          <code>https://firstmovers.ai/labs/?<span class="param-source">utm_source=youtube</span>&<span class="param-medium">utm_medium=video-description</span>&<span class="param-campaign">utm_campaign=julia-channel_ai-automation</span></code>
+          <p>GA4 shows the exact video, placement, and campaign that drove the visit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">For Julia (YouTube)</div>
+    <div class="guide-steps">
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Go to the YouTube Batch tab</strong>
+          <p>Enter your channel slug (julia-channel) and add each video slug (e.g., ai-automation-intro, chatgpt-for-business). Use hyphens, no spaces.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Click "Generate All Links"</strong>
+          <p>You'll get 3 links per video: one for the description CTA, one for the pinned comment, and one for the end screen.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Copy and paste into YouTube</strong>
+          <p>Click "Copy All" next to each video. Open YouTube Studio, edit the video, and replace the plain firstmovers.ai links with the UTM-tagged versions.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Done. Data starts flowing within 24 hours.</strong>
+          <p>Check Google Analytics > Acquisition > Traffic Acquisition. Filter by Source = youtube. You'll see per-video traffic, bounce rates, and conversions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">For Email / Newsletter</div>
+    <div class="guide-steps">
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Go to Single Link tab</strong>
+          <p>Select your destination page (Labs, Consulting, etc.).</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Set Source = "Email", Medium = "Newsletter"</strong>
+          <p>Campaign name format: weekly-digest_2026-w14 (or promo-name_2026-03).</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Set Content to where the link sits</strong>
+          <p>Use "email-header-cta" for the main CTA button, "email-footer" for footer links.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Copy the UTM link and use it in your email tool</strong>
+          <p>Replace the plain URL in your email CTA button with the generated UTM link. Works with any email platform (GHL, Mailchimp, ConvertKit, etc.).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">For Social Media</div>
+    <div class="guide-steps">
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Single Link tab: select the platform as Source</strong>
+          <p>Instagram, LinkedIn, Twitter, Facebook, TikTok — select whichever platform you're posting on.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Medium = the content type</strong>
+          <p>"post" for feed posts, "story" for stories, "reel" for reels, "bio-link" for your profile link.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Use the generated link in your post or bio</strong>
+          <p>The long URL works fine in link-in-bio tools (Linktree, etc.) and anywhere you can paste a URL. On platforms that show the full URL (like LinkedIn), consider using a link shortener.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">Naming Rules (Keep It Consistent)</div>
+    <div class="guide-body">
+      <div class="guide-rules">
+        <div class="rule rule-do">
+          <div class="rule-label">Always</div>
+          <ul>
+            <li>Use <strong>lowercase</strong> for everything</li>
+            <li>Use <strong>hyphens</strong> to separate words (ai-automation)</li>
+            <li>Use <strong>underscores</strong> to separate parts in campaign names (julia-channel_topic_date)</li>
+            <li>Include a <strong>date</strong> for time-bound campaigns (2026-03 or 2026-w14)</li>
+          </ul>
+        </div>
+        <div class="rule rule-dont">
+          <div class="rule-label">Never</div>
+          <ul>
+            <li>Use spaces (breaks the URL)</li>
+            <li>Use UPPERCASE (GA4 treats "YouTube" and "youtube" as different sources)</li>
+            <li>Use special characters (#, ?, &, =)</li>
+            <li>Change the naming format mid-campaign</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">How to Check if It's Working</div>
+    <div class="guide-steps">
+      <div class="guide-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Click your own UTM link</strong>
+          <p>Open it in a private/incognito browser window so it counts as a new session.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Check GA4 Real-Time report</strong>
+          <p>Go to Google Analytics > Reports > Realtime. You should see your session appear within 30 seconds.</p>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Check Traffic Acquisition report (next day)</strong>
+          <p>GA4 > Reports > Acquisition > Traffic Acquisition. Filter by your utm_source. You'll see the session with the correct source, medium, and campaign.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">Link History</div>
+    <div class="guide-body">
+      <p>Every link you generate is saved in your browser's local storage. This means:</p>
+      <ul style="margin:8px 0 0 16px;font-size:13px;color:var(--muted);line-height:2">
+        <li>Your history is <strong>per device, per browser</strong> — Julia's links on her laptop won't show on Josh's computer</li>
+        <li>Clearing browser data will clear the history</li>
+        <li>Use <strong>Export CSV</strong> or <strong>Export JSON</strong> to save a backup of all generated links</li>
+        <li>Each team member maintains their own link history — no conflicts</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide-section" style="background:rgba(60,212,157,0.04);border:1px solid rgba(60,212,157,0.15);border-radius:10px;padding:20px">
+    <div class="guide-title" style="color:var(--accent)">Quick Reference</div>
+    <div class="guide-body">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:8px">
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:8px 0;font-weight:600;width:30%">utm_source</td><td style="padding:8px 0;color:var(--muted)">Where the link lives: youtube, email, instagram, linkedin, twitter, affiliate</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:8px 0;font-weight:600">utm_medium</td><td style="padding:8px 0;color:var(--muted)">Content type: video-description, newsletter, post, bio-link, affiliate-link</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:8px 0;font-weight:600">utm_campaign</td><td style="padding:8px 0;color:var(--muted)">The initiative: channel_topic_date (e.g., julia-channel_ai-automation_2026-03)</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.06)"><td style="padding:8px 0;font-weight:600">utm_content</td><td style="padding:8px 0;color:var(--muted)">Which link: description-cta, pinned-comment, hero-cta, bio-link (optional)</td></tr>
+        <tr><td style="padding:8px 0;font-weight:600">utm_term</td><td style="padding:8px 0;color:var(--muted)">Keyword or A/B test variant (optional)</td></tr>
+      </table>
+    </div>
+  </div>
 
 </div>
 
