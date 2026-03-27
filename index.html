@@ -350,6 +350,63 @@ textarea{resize:vertical;min-height:60px}
     </div>
   </div>
 
+  <div class="guide-section" style="background:rgba(251,191,36,0.04);border:1px solid rgba(251,191,36,0.2);border-radius:10px;padding:20px">
+    <div class="guide-title" style="color:var(--yellow);border:none;padding:0;margin-bottom:8px">Important: UTM Only Works on firstmovers.ai</div>
+    <div class="guide-body">
+      <p style="color:var(--text)">UTM parameters are read by <strong>Google Analytics on the destination website</strong>. This means:</p>
+      <div class="guide-compare" style="margin-top:12px">
+        <div class="guide-card guide-after" style="border-left-color:var(--green)">
+          <div class="guide-card-label" style="color:var(--green)">Will be tracked in GA4</div>
+          <code>https://<strong>firstmovers.ai</strong>/consulting-booking/?utm_source=youtube&...</code>
+          <p>The visitor lands on YOUR site. GA4 reads the UTM parameters.</p>
+        </div>
+        <div class="guide-card guide-before" style="border-left-color:var(--red)">
+          <div class="guide-card-label" style="color:var(--red)">Will NOT be tracked in GA4</div>
+          <code>https://<strong>calendly.com</strong>/jake/booking?utm_source=youtube&...</code>
+          <p>This is a different website. Your GA4 cannot read it.</p>
+        </div>
+      </div>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Rule:</strong> Always generate UTM links pointing to <code style="background:var(--dark4);padding:2px 6px;border-radius:3px">https://firstmovers.ai/...</code> pages. If the final destination is an external tool (Calendly, survey, etc.), see "Tracking External Links" below.</p>
+    </div>
+  </div>
+
+  <div class="guide-section">
+    <div class="guide-title">Tracking External Links (Booking, Surveys, etc.)</div>
+    <div class="guide-body">
+      <p>For links that go to external tools (Calendly, Typeform, GHL booking, surveys), UTM won't work directly because those sites don't have your GA4. Here are two ways to track them:</p>
+    </div>
+    <div class="guide-steps" style="margin-top:12px">
+      <div class="guide-step">
+        <div class="step-num" style="background:rgba(60,212,157,0.15);color:var(--accent)">A</div>
+        <div class="step-content">
+          <strong>Option A: Link Shortener (Recommended)</strong>
+          <p>Use a link shortener like Short.io or Bitly. The shortener tracks every click — who clicked, when, from where — then redirects to the external tool. Works for ANY URL, not just firstmovers.ai.</p>
+          <div style="margin-top:8px;padding:10px;background:var(--dark4);border-radius:6px;font-size:12px;font-family:monospace;color:var(--muted)">
+            External URL: https://calendly.com/jake/consultation<br>
+            Short link: https://frstmvrs.link/book-jake<br>
+            Result: Short.io tracks all clicks, shows geographic data, device types, referrers
+          </div>
+        </div>
+      </div>
+      <div class="guide-step">
+        <div class="step-num" style="background:rgba(59,130,246,0.15);color:var(--blue)">B</div>
+        <div class="step-content">
+          <strong>Option B: Redirect Through Your Site</strong>
+          <p>Create a page on firstmovers.ai (e.g., /book/) that automatically redirects to the external booking tool. The UTM parameters get captured by GA4 on your site before the redirect happens.</p>
+          <div style="margin-top:8px;padding:10px;background:var(--dark4);border-radius:6px;font-size:12px;font-family:monospace;color:var(--muted)">
+            UTM link: https://firstmovers.ai/book/?utm_source=youtube&utm_campaign=...<br>
+            GA4 captures the UTM data on /book/ page<br>
+            Page auto-redirects to: https://calendly.com/jake/consultation<br>
+            Result: GA4 knows the visitor came from YouTube, AND they went to book
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:12px 16px;background:var(--dark3);border-radius:8px;font-size:13px;border-left:3px solid var(--accent)">
+      <strong style="color:var(--accent)">Best practice:</strong> Keep booking pages on firstmovers.ai whenever possible (like /consulting-booking/). This gives you full GA4 tracking with zero extra setup. Use the link shortener approach for truly external tools you can't embed on your site.
+    </div>
+  </div>
+
   <div class="guide-section">
     <div class="guide-title">For Julia (YouTube)</div>
     <div class="guide-steps">
